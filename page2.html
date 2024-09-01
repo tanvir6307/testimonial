@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #000;
+        }
+        button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+}
+
+/* Active (click) effect */
+button:active {
+    background-color: #004494; /* Even darker blue on click */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Smaller shadow */
+}
+
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <button onclick="downloadPDF()">D</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Load the background image
+            const backgroundImage = new Image();
+            backgroundImage.src = 'bg.png';  // Ensure bg.png is in the same directory
+
+            backgroundImage.onload = function() {
+                const A4_WIDTH = 1123;
+                const A4_HEIGHT = 794;
+                canvas.width = A4_WIDTH;
+                canvas.height = A4_HEIGHT;
+
+                // Draw background image
+                ctx.drawImage(backgroundImage, 0, 0, A4_WIDTH, A4_HEIGHT);
+
+                // Place text inputs on the canvas
+                ctx.font = '20px Arial';
+                ctx.fillStyle = 'black';
+
+                ctx.fillText(urlParams.get('input1'), 330, 305);
+                ctx.fillText(urlParams.get('input2'), 325, 338);
+                ctx.fillText(urlParams.get('input3'), 199, 372);
+                ctx.fillText(urlParams.get('input4'), 464, 405);
+                ctx.fillText(urlParams.get('input5'), 815, 405);
+                ctx.fillText(urlParams.get('input6'), 187, 439);
+                ctx.fillText(urlParams.get('input7'), 520, 493);
+                ctx.fillText(urlParams.get('input8'), 780, 493);
+                ctx.fillText(urlParams.get('input9'), 310, 525);
+                ctx.fillText(urlParams.get('input10'), 572, 525);
+                ctx.fillText(urlParams.get('input11'), 206, 698);
+            };
+        };
+
+        function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const canvas = document.getElementById('myCanvas');
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [1123, 794]
+    });
+
+    // Get the value of input4 from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const filename = urlParams.get('input4') || 'download'; // Default to 'download' if input4 is empty
+
+    // Add the canvas image to the PDF
+    pdf.addImage(imgData, 'PNG', 0, 0, 1123, 794);
+
+    // Save the PDF with the name from input4
+    pdf.save(`${filename}.pdf`);
+}
+
+    </script>
+</body>
+</html>

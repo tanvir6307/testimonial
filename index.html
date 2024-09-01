@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+    <style>
+        html, body {
+            height: 100%; /* Ensure the background covers the full height */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #22c1c3, #2dfd84); /* Gradient from orange to light orange */
+            min-height: 100%; /* Ensure the body covers the full height */
+            background-attachment: fixed; /* Fix the gradient so it doesn't move with the scroll */
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        label, input {
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+		    font-size: 18px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+			margin-bottom: 20px;
+        }
+        button {
+    padding: 10px 20px;
+    background-color: transparent; /* No background color */
+    color: #FF0000; /* Red text color */
+    border: 2px solid #FF0000; /* Red border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+        }
+		
+		button:hover {
+    background-color: #FF0000; /* Red background on hover */
+    color: white; /* White text on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+     }
+	 
+	 button:active {
+    background-color: #CC0000; /* Darker red background on click */
+    transform: translateY(0); /* Reset lift effect */
+    }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+	<h1 style="text-align:center">Student Info</h1>
+        <form id="form1">
+            <label for="input1">Name:</label>
+            <input type="text" id="input1" name="input1">
+            <label for="input2">Father Name:</label>
+            <input type="text" id="input2" name="input2">
+            <!-- Add more labels and inputs as needed -->
+            <label for="input3">Mother Name:</label>
+            <input type="text" id="input3" name="input3">
+            <label for="input4">Student ID:</label>
+            <input type="text" id="input4" name="input4">
+            <label for="input5">Registration No:</label>
+            <input type="text" id="input5" name="input5">
+            <label for="input6">Session:</label>
+            <input type="text" id="input6" name="input6">
+            <label for="input7">Year:</label>
+            <input type="text" id="input7" name="input7">
+            <label for="input8">Held In:</label>
+            <input type="text" id="input8" name="input8">
+            <label for="input9">CGPA:</label>
+            <input type="text" id="input9" name="input9">
+            <label for="input10">Latter Grade:</label>
+            <input type="text" id="input10" name="input10">
+            <label for="input11">Date:</label>
+            <input type="text" id="input11" name="input11">
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const form = document.getElementById('form1');
+            const formData = new FormData(form);
+            const queryParams = new URLSearchParams(formData).toString();
+            window.location.href = `page2.html?${queryParams}`;
+        }
+		
+		document.querySelectorAll('input[type="text"]').forEach((input, index, inputs) => {
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault(); 
+                const nextInput = inputs[index + 1];
+                if (nextInput) {
+                    nextInput.focus(); 
+                }
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault(); 
+                const previousInput = inputs[index - 1];
+                if (previousInput) {
+                    previousInput.focus();
+                }
+            }
+        });
+    });
+	
+	function submitForm() {
+        const form = document.getElementById('form1');
+        const formData = new FormData(form);
+        const queryParams = new URLSearchParams(formData).toString();
+        window.location.href = `page2.html?${queryParams}`;
+    }
+
+    // Event listener for the Enter key press
+    document.getElementById('form1').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default form submission behavior
+            submitForm(); // Call the submitForm function
+        }
+    });
+    </script>
+</body>
+</html>
