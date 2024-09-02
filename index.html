@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Degree</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+		.radio-group {
+            margin: 20px 0;
+        }
+        .radio-group label {
+            font-weight: bold;  /* Make the text bold */
+            font-size: 18px;    /* Increase text size */
+            margin-right: 20px;
+        }
+        .radio-group input[type="radio"] {
+            transform: scale(1.5);  /* Increase the size of the radio button */
+            margin-right: 10px;     /* Add some space between the radio button and text */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #FF0000;
+            border: 2px solid #FF0000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background-color: #FF0000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            background-color: #CC0000;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Choose the Degree please:</h2>
+        <form id="programForm" action="page3.html" method="get">
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="program" value="BSc" checked> BSc
+                </label>
+                <label>
+                    <input type="radio" name="program" value="MSc"> MSc
+                </label>
+            </div>
+            <button type="submit" class="button">Go</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to change the form's action based on selected radio button
+        const form = document.getElementById('programForm');
+        const radioButtons = document.getElementsByName('program');
+
+        form.addEventListener('submit', function(event) {
+            let selectedValue = 'page1.html'; // default value
+
+            radioButtons.forEach(radio => {
+                if (radio.checked && radio.value === 'MSc') {
+                    selectedValue = 'page3.html';
+                }
+            });
+
+            form.action = selectedValue;
+        });
+    </script>
+</body>
+</html>
