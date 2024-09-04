@@ -93,7 +93,7 @@
         ctx.drawImage(backgroundImage, 0, 0, A4_WIDTH, A4_HEIGHT);
 
         // Load the custom font
-        const font = new FontFace('LucidaFont', 'url(lucida.TTF)');
+        const font = new FontFace('LucidaFont', 'url(lucida.ttf)');
 
         // Add the font to the document
         font.load().then(function(loadedFont) {
@@ -138,6 +138,9 @@
                 ctx.fillText(urlParams.get('input9'), 860, 492);
                 ctx.fillText(urlParams.get('input10'), 328, 525);
                 ctx.fillText(urlParams.get('input11'), 206, 692);
+				
+				ctx.font = '15px Arial';
+			    ctx.fillText(urlParams.get('input0'), 119, 190);
         }).catch(function(error) {
             console.error('Failed to load the font:', error);
         }); // Close the font.load().then block

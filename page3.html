@@ -76,6 +76,11 @@
     <div class="form-container">
         <h1 style="text-align:center">MSc Student Info</h1>
         <form id="form1">
+		
+		    <div class="form-group">
+                <label for="input0">Sl No</label>
+                <input type="text" id="input0" name="input0">
+            </div>
             <div class="form-group">
                 <label for="input1">Name:</label>
                 <input type="text" id="input1" name="input1">
@@ -156,29 +161,46 @@
         }
 
         document.querySelectorAll('input[type="text"]').forEach((input, index, inputs) => {
-            input.addEventListener('keydown', function(event) {
-                if (event.key === 'ArrowDown') {
-                    event.preventDefault();
-                    const nextInput = inputs[index + 1];
-                    if (nextInput) {
-                        nextInput.focus();
-                    }
-                } else if (event.key === 'ArrowUp') {
-                    event.preventDefault();
-                    const previousInput = inputs[index - 1];
-                    if (previousInput) {
-                        previousInput.focus();
-                    }
-                }
-            });
-        });
-
-        document.getElementById('form1').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); 
-                submitForm();
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            const nextInput = inputs[index + 1];
+            if (nextInput) {
+                nextInput.focus();
             }
-        });
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            const previousInput = inputs[index - 1];
+            if (previousInput) {
+                previousInput.focus();
+            }
+        } else if (event.key === 'Enter') {
+            event.preventDefault();
+            const nextInput = inputs[index + 1];
+            if (nextInput) {
+                nextInput.focus();
+            } else {
+                // Check if all text fields are filled
+                const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+                if (allFilled) {
+                    submitForm();
+                }
+            }
+        }
+    });
+});
+
+
+document.getElementById('form1').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        const inputs = document.querySelectorAll('input[type="text"]');
+        const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+        if (allFilled) {
+            submitForm();
+        }
+    }
+});
     </script>
 </body>
 </html>
