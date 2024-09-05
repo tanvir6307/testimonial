@@ -13,6 +13,34 @@
         canvas {
             border: 1px solid #000;
         }
+		
+		.back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: transparent;
+    color: #FF0000;
+    border: 2px solid #FF0000;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #FF0000;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.back-btn:active {
+    background-color: #CC0000;
+    transform: translateY(0);
+}
+
+		
         button {
     padding: 10px 20px;
     background-color: transparent; /* No background color */
@@ -67,7 +95,7 @@
     </style>
 </head>
 <body>
-
+    <button class="back-btn" onclick="goBack()">Back</button>
     <button onclick="downloadPDF()">Download</button>
 	<button onclick="printCanvas()">Print</button> <br>
 	<canvas id="myCanvas"></canvas>
@@ -199,6 +227,9 @@
     printWindow.focus();
     printWindow.print();
     printWindow.close();
+}
+ function goBack() {
+    window.history.back();
 }
 
 

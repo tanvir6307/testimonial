@@ -13,10 +13,37 @@
         }
 
         body {
-            background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+            background-color: #d3d3d3;
             min-height: 100%;
             background-attachment: fixed;
         }
+		
+		.back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: transparent;
+    color: #FF0000;
+    border: 2px solid #FF0000;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #FF0000;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.back-btn:active {
+    background-color: #CC0000;
+    transform: translateY(0);
+}
+
 
         .form-container {
             max-width: 600px;
@@ -73,6 +100,7 @@
     </style>
 </head>
 <body>
+    <button class="back-btn" onclick="goBack()">Back</button>
     <div class="form-container">
         <h1 style="text-align:center">BSc Student Info</h1>
         <form id="form1">
@@ -201,6 +229,11 @@ document.getElementById('form1').addEventListener('keydown', function(event) {
         }
     }
 });
+
+function goBack() {
+    window.history.back();
+}
+
     </script>
 </body>
 </html>
