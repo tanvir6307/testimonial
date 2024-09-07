@@ -6,8 +6,8 @@
     <title>Choose Your Degree</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+            background: #e0e5ec;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,54 +15,77 @@
             margin: 0;
         }
         .container {
+            background-color: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 7px 7px 15px #b3b5b7, -7px -7px 15px #ffffff;
+            padding: 40px;
             text-align: center;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
         }
-		.radio-group {
-            margin: 20px 0;
+        h2 {
+            font-size: 24px;
+            color: #333;
+        }
+        .radio-group {
+            margin: 30px 0;
         }
         .radio-group label {
-            font-weight: bold;  /* Make the text bold */
-            font-size: 18px;    /* Increase text size */
-            margin-right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
         .radio-group input[type="radio"] {
-            transform: scale(1.5);  /* Increase the size of the radio button */
-            margin-right: 10px;     /* Add some space between the radio button and text */
+            appearance: none;
+            background-color: #e0e5ec;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 15px;
+            position: relative;
+            box-shadow: inset 7px 7px 15px #b3b5b7, inset -7px -7px 15px #ffffff;
+            cursor: pointer;
+            outline: none;
+        }
+        .radio-group input[type="radio"]:checked::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #ff5757;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
         }
 
         button {
-            padding: 10px 20px;
-            background-color: transparent;
-            color: #FF0000;
-            border: 2px solid #FF0000;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 10px 30px;
+            background-color: #e0e5ec;
+            border: none;
+            border-radius: 12px;
+            color: #333;
             font-size: 16px;
             font-weight: bold;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-            margin-top: 5px;
+            cursor: pointer;
+            box-shadow: 7px 7px 15px #b3b5b7, -7px -7px 15px #ffffff;
+            transition: all 0.3s ease;
         }
-
         button:hover {
-            background-color: #FF0000;
-            color: white;
-            transform: translateY(-2px);
+            box-shadow: inset 7px 7px 15px #b3b5b7, inset -7px -7px 15px #ffffff;
         }
-
         button:active {
-            background-color: #CC0000;
-            transform: translateY(0);
+            box-shadow: inset 7px 7px 15px #b3b5b7, inset -7px -7px 15px #ffffff;
+            transform: scale(0.98);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Choose the Degree please:</h2>
+        <h2>Choose the Degree:</h2>
         <form id="programForm" action="page3.html" method="get">
             <div class="radio-group">
                 <label>
@@ -72,12 +95,11 @@
                     <input type="radio" name="program" value="MSc"> MSc
                 </label>
             </div>
-            <button type="submit" class="button">Go</button>
+            <button type="submit">Go</button>
         </form>
     </div>
 
     <script>
-        // JavaScript to change the form's action based on selected radio button
         const form = document.getElementById('programForm');
         const radioButtons = document.getElementsByName('program');
 
