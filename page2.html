@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,15 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-			background-color: #e0e5ec;
+            background-color: #e0e5ec;
             text-align: center;
         }
+
         canvas {
             border: 1px solid #000;
         }
-		
-		button {
+
+        button {
             padding: 10px 30px;
             background-color: #e0e5ec;
             color: #333;
@@ -25,7 +27,7 @@
             font-weight: bold;
             cursor: pointer;
             margin-right: 10px;
-			margin-bottom: 10px;
+            margin-bottom: 10px;
             box-shadow: 7px 7px 15px #b3b5b7, -7px -7px 15px #ffffff;
             transition: all 0.3s ease;
         }
@@ -40,144 +42,144 @@
         }
 
         @media print {
-        /* Hide the elements you don't want to print */
-        body * {
-            visibility: hidden;
-        }
-        #myCanvas, #myCanvas * {
-            visibility: visible;
-        }
-        #myCanvas {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: auto;
-        }
 
-        /* Optional: Remove margins and padding to fit the canvas better */
-        body {
-            margin: 0;
-            padding: 0;
-        }
+            body * {
+                visibility: hidden;
+            }
 
-        /* Hide the page numbers, date, and file source */
-        @page {
-            margin: 0;
-        }
-    }
+            #myCanvas,
+            #myCanvas * {
+                visibility: visible;
+            }
 
+            #myCanvas {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: auto;
+            }
+
+           
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            
+            @page {
+                margin: 0;
+            }
+        }
     </style>
 </head>
+
 <body>
     <button class="back-btn" onclick="goBack()">Back</button>
     <button onclick="downloadPDF()">Download</button>
-	<button onclick="printCanvas()" style="display: none;">Print</button> <br>
-	<canvas id="myCanvas"></canvas>
+    <button onclick="printCanvas()" style="display: none;">Print</button> <br>
+    <canvas id="myCanvas"></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
     <script>
-        window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
 
-    // Load the background image
-    const backgroundImage = new Image();
-    backgroundImage.src = 'bg.png'; // Ensure bg.png is in the same directory
+            // Load the background image
+            const backgroundImage = new Image();
+            backgroundImage.src = 'bg.png'; 
 
-    backgroundImage.onload = function() {
-        const A4_WIDTH = 1123;
-        const A4_HEIGHT = 794;
-        canvas.width = A4_WIDTH;
-        canvas.height = A4_HEIGHT;
+            backgroundImage.onload = function () {
+                const A4_WIDTH = 1123;
+                const A4_HEIGHT = 794;
+                canvas.width = A4_WIDTH;
+                canvas.height = A4_HEIGHT;
 
-        // Draw background image
-        ctx.drawImage(backgroundImage, 0, 0, A4_WIDTH, A4_HEIGHT);
+                // Draw background image
+                ctx.drawImage(backgroundImage, 0, 0, A4_WIDTH, A4_HEIGHT);
 
-        // Load the custom font
-        const font = new FontFace('LucidaFont', 'url(lucida.ttf)');
+                // Load the custom font
+                const font1 = new FontFace('LucidaFont', 'url(lucida.ttf)');
+                const font = new FontFace('calligraphyFont', 'url(calligrafy.ttf)');
 
-        // Add the font to the document
-        font.load().then(function(loadedFont) {
-            document.fonts.add(loadedFont);
+                // Add the font to the document
+                font.load().then(function (loadedFont) {
+                    document.fonts.add(loadedFont);
 
-            // Place text inputs on the canvas
-            // Set bold and italic font for input1
-            ctx.font = 'bold 20px LucidaFont'; // Make input1 bold and italic
-            ctx.fillStyle = 'black';
-            const input1Text = urlParams.get('input1');
-            const x11 = 325;
-            const x12 = 1010;
-            const midpoint1 = (x11 + x12) / 2;
-            const textWidth = ctx.measureText(input1Text).width;
-            const startX1 = midpoint1 - (textWidth / 2);
-            ctx.fillText(input1Text, startX1, 305);
+                    ctx.font = '20px calligraphyFont'; 
+                    ctx.fillStyle = 'black';
+                    const input1Text = urlParams.get('input1');
+                    const x11 = 325;
+                    const x12 = 1010;
+                    const midpoint1 = (x11 + x12) / 2;
+                    const textWidth = ctx.measureText(input1Text).width;
+                    const startX1 = midpoint1 - (textWidth / 2);
+                    ctx.fillText(input1Text, startX1, 305);
 
-            // Use regular font for other inputs
-            ctx.font = '20px Arial';
+                    // Use regular font for other inputs
+                    ctx.font = 'italic 20px Arial';
 
-            const input2Text = urlParams.get('input2');
-            const x21 = 325;
-            const x22 = 1010;
-            const midpoint2 = (x21 + x22) / 2;
-            const textWidth2 = ctx.measureText(input2Text).width;
-            const startX2 = midpoint2 - (textWidth2 / 2);
-            ctx.fillText(input2Text, startX2, 338);
+                    const input2Text = urlParams.get('input2');
+                    const x21 = 325;
+                    const x22 = 1010;
+                    const midpoint2 = (x21 + x22) / 2;
+                    const textWidth2 = ctx.measureText(input2Text).width;
+                    const startX2 = midpoint2 - (textWidth2 / 2);
+                    ctx.fillText(input2Text, startX2, 338);
 
-            const input3Text = urlParams.get('input3');
-            const x31 = 199;
-            const x32 = 1010;
-            const midpoint3 = (x31 + x32) / 2;
-            const textWidth3 = ctx.measureText(input3Text).width;
-            const startX3 = midpoint3 - (textWidth3 / 2);
-            ctx.fillText(input3Text, startX3, 372);
+                    const input3Text = urlParams.get('input3');
+                    const x31 = 199;
+                    const x32 = 1010;
+                    const midpoint3 = (x31 + x32) / 2;
+                    const textWidth3 = ctx.measureText(input3Text).width;
+                    const startX3 = midpoint3 - (textWidth3 / 2);
+                    ctx.fillText(input3Text, startX3, 372);
 
-            ctx.fillText(urlParams.get('input4'), 492, 405);
-            ctx.fillText(urlParams.get('input5'), 869, 405);
-            ctx.fillText(urlParams.get('input6'), 233, 439);
-            ctx.fillText(urlParams.get('input7'), 560, 492);
-            ctx.fillText(urlParams.get('input8'), 819, 492);
-            ctx.fillText(urlParams.get('input9'), 340, 525);
-            ctx.fillText(urlParams.get('input10'), 632, 525);
-            ctx.fillText(urlParams.get('input11'), 206, 698);
-			
-			ctx.font = '15px Arial';
-			ctx.fillText(urlParams.get('input0'), 119, 190);
-        }).catch(function(error) {
-            console.error('Failed to load the font:', error);
-        }); // Close the font.load().then block
+                    ctx.fillText(urlParams.get('input4'), 492, 405);
+                    ctx.fillText(urlParams.get('input5'), 869, 405);
+                    ctx.fillText(urlParams.get('input6'), 233, 439);
+                    ctx.fillText(urlParams.get('input7'), 560, 492);
+                    ctx.fillText(urlParams.get('input8'), 819, 492);
+                    ctx.fillText(urlParams.get('input9'), 340, 525);
+                    ctx.fillText(urlParams.get('input10'), 632, 525);
+                    ctx.fillText(urlParams.get('input11'), 206, 698);
 
-    }; // Close the backgroundImage.onload function
-}; // Close the window.onload function
+                    ctx.font = '15px Arial';
+                    ctx.fillText(urlParams.get('input0'), 119, 190);
+                }).catch(function (error) {
+                    console.error('Failed to load the font:', error);
+                }); 
+            }; 
+        }; 
 
         function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const canvas = document.getElementById('myCanvas');
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [1123, 794]
-    });
+            const { jsPDF } = window.jspdf;
+            const canvas = document.getElementById('myCanvas');
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF({
+                orientation: 'landscape',
+                unit: 'px',
+                format: [1123, 794]
+            });
 
-    // Get the value of input4 from the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const filename = urlParams.get('input4') || 'download'; // Default to 'download' if input4 is empty
+            const urlParams = new URLSearchParams(window.location.search);
+            const filename = urlParams.get('input4') || 'download';
 
-    // Add the canvas image to the PDF
-    pdf.addImage(imgData, 'PNG', 0, 0, 1123, 794);
+            // Add the canvas image to the PDF
+            pdf.addImage(imgData, 'PNG', 0, 0, 1123, 794);
 
-    // Save the PDF with the name from input4
-    pdf.save(`${filename}.pdf`);
-    }
+            // Save the PDF with the name from input4
+            pdf.save(`${filename}.pdf`);
+        }
 
-	function printCanvas() {
-    const canvas = document.getElementById('myCanvas');
-    const imgData = canvas.toDataURL('image/png');
+        function printCanvas() {
+            const canvas = document.getElementById('myCanvas');
+            const imgData = canvas.toDataURL('image/png');
 
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
         <html>
             <head>
                 <title>Print Canvas</title>
@@ -198,16 +200,17 @@
             </body>
         </html>
     `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
-}
- function goBack() {
-    window.history.back();
-}
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        }
+        function goBack() {
+            window.history.back();
+        }
 
 
     </script>
 </body>
+
 </html>
