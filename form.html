@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Generator</title>
+    <style>
+        :root {
+            --maroon: #8a2432;
+            --maroon-dark: #6f1c27;
+            --ink: #1f2937;
+            --muted: #6b7280;
+            --line: #e6e8ec;
+            --field-line: #d5d9e0;
+            --card: #ffffff;
+            --shadow: 0 10px 34px rgba(16, 24, 40, .10);
+            --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --serif: Georgia, "Times New Roman", serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--sans);
+            color: var(--ink);
+            background: linear-gradient(180deg, #f6f7f9 0%, #eceef2 100%);
+            padding: 32px 20px 56px;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 22px 30px;
+            border-bottom: 1px solid var(--line);
+            background: #fcfcfd;
+        }
+
+        .card-header img {
+            width: 46px;
+            height: auto;
+        }
+
+        .card-header .titles { line-height: 1.3; }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--maroon);
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .card-body { padding: 28px 30px 8px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 20px;
+        }
+
+        .field { display: flex; flex-direction: column; }
+
+        .field label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .field input {
+            padding: 11px 13px;
+            font-size: 15px;
+            font-family: var(--sans);
+            color: var(--ink);
+            background: #fff;
+            border: 1px solid var(--field-line);
+            border-radius: 9px;
+            outline: none;
+            transition: border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .field input:hover { border-color: #b9c0cb; }
+
+        .field input:focus {
+            border-color: var(--maroon);
+            box-shadow: 0 0 0 3px rgba(138, 36, 50, .14);
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 22px 30px 26px;
+            margin-top: 20px;
+            border-top: 1px solid var(--line);
+            background: #fcfcfd;
+        }
+
+        button {
+            padding: 11px 22px;
+            font-size: 14.5px;
+            font-weight: 600;
+            font-family: var(--sans);
+            border-radius: 9px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: background .16s ease, border-color .16s ease, box-shadow .16s ease, transform .1s ease;
+        }
+
+        button:active { transform: translateY(1px); }
+
+        .btn-primary {
+            background: var(--maroon);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--maroon-dark);
+            box-shadow: 0 6px 16px rgba(138, 36, 50, .24);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: var(--maroon);
+            border-color: var(--maroon);
+        }
+
+        .btn-secondary:hover { background: rgba(138, 36, 50, .06); }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border-color: var(--line);
+        }
+
+        .btn-ghost:hover { background: #fff; color: var(--ink); }
+
+        #status {
+            font-size: 13px;
+            color: var(--muted);
+            margin-left: auto;
+            min-height: 18px;
+        }
+
+        @media (max-width: 560px) {
+            .grid { grid-template-columns: 1fr; }
+            .card-body { padding: 22px 20px 6px; }
+            .card-header, .actions { padding-left: 20px; padding-right: 20px; }
+            #status { margin-left: 0; width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="card">
+            <div class="card-header">
+                <img src="logo.png" alt="Jagannath University crest">
+                <div class="titles">
+                    <h1 id="heading">Testimonial</h1>
+                    <div class="subtitle">Department of Physics &middot; Jagannath University</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="form1">
+                    <div class="grid">
+                        <div class="field"><label for="input0">Sl No</label><input type="text" id="input0"></div>
+                        <div class="field"><label for="input1">Name</label><input type="text" id="input1"></div>
+                        <div class="field"><label for="input2">Father's Name</label><input type="text" id="input2"></div>
+                        <div class="field"><label for="input3">Mother's Name</label><input type="text" id="input3"></div>
+                        <div class="field"><label for="input4">Student ID</label><input type="text" id="input4"></div>
+                        <div class="field"><label for="input5">Registration No</label><input type="text" id="input5"></div>
+                        <div class="field"><label for="input6">Session</label><input type="text" id="input6"></div>
+                        <div class="field"><label for="input7">Exam Year</label><input type="text" id="input7"></div>
+                        <div class="field"><label for="input8">Held In</label><input type="text" id="input8"></div>
+                        <div class="field"><label for="input9">CGPA</label><input type="text" id="input9"></div>
+                        <div class="field"><label for="input10">Letter Grade</label><input type="text" id="input10"></div>
+                        <div class="field"><label for="input11">Date</label><input type="text" id="input11"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="actions">
+                <button type="button" class="btn-primary" onclick="generatePDF('download')">Download PDF</button>
+                <button type="button" class="btn-secondary" onclick="generatePDF('preview')">Preview</button>
+                <button type="button" class="btn-ghost" onclick="resetForm()">Reset</button>
+                <div id="status"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Local libraries + embedded templates/font (works offline, no server needed) -->
+    <script src="pdf-lib.min.js"></script>
+    <script src="fontkit.umd.min.js"></script>
+    <script src="assets.js"></script>
+    <script>
+        const { PDFDocument, rgb, StandardFonts } = PDFLib;
+        const INK = rgb(0, 0, 0);
+
+        // Placement configs. Page is 792 x 612 pt, origin bottom-left, y = text baseline.
+        // font: 'callig' -> Lucida Calligraphy (embedded), 'data' -> Times-Italic (built in).
+        // Dotted-line values sit a few pt above the dots (small gap); Sl No sits a bit lower.
+        const CONFIGS = {
+            bsc: {
+                title: 'B.Sc Testimonial',
+                template: () => window.BSC_TEMPLATE_PDF_B64,
+                fields: [
+                    { id: 'input1',  font: 'callig', size: 20, align: 'center', cx: 478,   y: 395 }, // Name
+                    { id: 'input2',  font: 'callig', size: 20, align: 'center', cx: 471,   y: 369 }, // Father
+                    { id: 'input3',  font: 'callig', size: 20, align: 'center', cx: 427,   y: 344 }, // Mother
+                    { id: 'input4',  font: 'data',   size: 14, align: 'center', cx: 392.6, y: 317 }, // Student ID
+                    { id: 'input5',  font: 'data',   size: 14, align: 'center', cx: 655,   y: 317 }, // Reg No
+                    { id: 'input6',  font: 'data',   size: 14, align: 'center', cx: 234,   y: 291 }, // Session
+                    { id: 'input7',  font: 'data',   size: 14, align: 'center', cx: 133,   y: 230 }, // Exam Year
+                    { id: 'input8',  font: 'data',   size: 14, align: 'center', cx: 318,   y: 230 }, // Held In
+                    { id: 'input9',  font: 'data',   size: 14, align: 'center', cx: 605,   y: 230 }, // CGPA
+                    { id: 'input10', font: 'data',   size: 14, align: 'center', cx: 158,   y: 209 }, // Letter Grade
+                    { id: 'input0',  font: 'data',   size: 13, align: 'left',   x: 95,     y: 445 }, // Sl No
+                    { id: 'input11', font: 'data',   size: 14, align: 'left',   x: 150,    y: 79  }, // Date
+                ]
+            },
+            msc: {
+                title: 'M.Sc Testimonial',
+                template: () => window.MSC_TEMPLATE_PDF_B64,
+                fields: [
+                    { id: 'input1',  font: 'callig', size: 20, align: 'center', cx: 478,    y: 396 }, // Name
+                    { id: 'input2',  font: 'callig', size: 20, align: 'center', cx: 471,    y: 371 }, // Father
+                    { id: 'input3',  font: 'callig', size: 20, align: 'center', cx: 427,    y: 345 }, // Mother
+                    { id: 'input4',  font: 'data',   size: 14, align: 'center', cx: 388.65, y: 318 }, // Student ID
+                    { id: 'input5',  font: 'data',   size: 14, align: 'center', cx: 650.85, y: 318 }, // Reg No
+                    { id: 'input6',  font: 'data',   size: 14, align: 'center', cx: 234.55, y: 292 }, // Session
+                    { id: 'input7',  font: 'data',   size: 14, align: 'center', cx: 390.4,  y: 251 }, // Exam Year
+                    { id: 'input8',  font: 'data',   size: 14, align: 'center', cx: 566,    y: 251 }, // Held In
+                    { id: 'input9',  font: 'data',   size: 14, align: 'center', cx: 197.55, y: 231 }, // CGPA
+                    { id: 'input10', font: 'data',   size: 14, align: 'center', cx: 405,    y: 231 }, // Letter Grade
+                    { id: 'input0',  font: 'data',   size: 13, align: 'left',   x: 95,      y: 445 }, // Sl No
+                    { id: 'input11', font: 'data',   size: 14, align: 'left',   x: 150,     y: 94  }, // Date
+                ]
+            }
+        };
+
+        // Pick degree from ?degree=bsc|msc (defaults to bsc).
+        const degree = (new URLSearchParams(location.search).get('degree') || 'bsc').toLowerCase();
+        const CONFIG = CONFIGS[degree] || CONFIGS.bsc;
+        document.title = CONFIG.title;
+        document.getElementById('heading').textContent = CONFIG.title;
+
+        function base64ToBytes(b64) {
+            const bin = atob(b64);
+            const bytes = new Uint8Array(bin.length);
+            for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+            return bytes;
+        }
+
+        function val(id) {
+            const el = document.getElementById(id);
+            return el ? el.value.trim() : '';
+        }
+
+        function setStatus(msg) {
+            document.getElementById('status').textContent = msg || '';
+        }
+
+        async function buildPdfBytes() {
+            const pdfDoc = await PDFDocument.load(base64ToBytes(CONFIG.template()));
+            pdfDoc.registerFontkit(window.fontkit);
+
+            const calligFont = await pdfDoc.embedFont(base64ToBytes(window.CALLIG_FONT_B64), { subset: true });
+            const dataFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBoldItalic); // real bold
+            const fonts = { callig: calligFont, data: dataFont };
+
+            const page = pdfDoc.getPages()[0];
+
+            CONFIG.fields.forEach(f => {
+                const text = val(f.id);
+                if (!text) return; // leave blank lines untouched
+                const font = fonts[f.font];
+                let x = f.x;
+                if (f.align === 'center') {
+                    const w = font.widthOfTextAtSize(text, f.size);
+                    x = f.cx - w / 2;
+                }
+                // All values bold. Times uses a real bold face; Lucida Calligraphy has no
+                // bold variant, so faux-bold it with a second, slightly offset strike.
+                page.drawText(text, { x, y: f.y, size: f.size, font, color: INK });
+                if (f.font === 'callig') {
+                    page.drawText(text, { x: x + 0.4, y: f.y, size: f.size, font, color: INK });
+                }
+            });
+
+            return pdfDoc.save(); // Uint8Array, vector PDF
+        }
+
+        async function generatePDF(mode) {
+            setStatus('Generating…');
+            try {
+                const bytes = await buildPdfBytes();
+                const blob = new Blob([bytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                if (mode === 'preview') {
+                    window.open(url, '_blank');
+                    setStatus('Opened preview in a new tab.');
+                } else {
+                    const filename = (val('input4') || 'testimonial') + '.pdf';
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setStatus('Downloaded ' + filename);
+                }
+                setTimeout(() => URL.revokeObjectURL(url), 60000);
+            } catch (err) {
+                console.error(err);
+                setStatus('Error: ' + err.message);
+                alert('Failed to generate PDF: ' + err.message);
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('form1').reset();
+            setStatus('');
+        }
+
+        // UX: arrow / Enter navigation between fields
+        const inputs = Array.from(document.querySelectorAll('#form1 input[type="text"]'));
+        inputs.forEach((input, index) => {
+            input.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowDown' || event.key === 'Enter') {
+                    event.preventDefault();
+                    const next = inputs[index + 1];
+                    if (next) next.focus();
+                    else generatePDF('download');
+                } else if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    const prev = inputs[index - 1];
+                    if (prev) prev.focus();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

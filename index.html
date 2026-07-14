@@ -1,121 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Your Degree</title>
+    <title>Testimonial Generator — Department of Physics</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #e0e5ec;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #e0e5ec;
-            border-radius: 20px;
-            box-shadow: 7px 7px 15px #b3b5b7, -7px -7px 15px #ffffff;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-        h2 {
-            font-size: 24px;
-            color: #333;
-        }
-        .radio-group {
-            margin: 30px 0;
-        }
-        .radio-group label {
-            font-size: 18px;
-            font-weight: bold;
-            color: #555;
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .radio-group input[type="radio"] {
-            appearance: none;
-            background-color: #e0e5ec;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 15px;
-            position: relative;
-            box-shadow: inset 7px 7px 15px #b3b5b7, inset -7px -7px 15px #ffffff;
-            cursor: pointer;
-            outline: none;
-        }
-        .radio-group input[type="radio"]:checked::before {
-            content: "";
-            width: 10px;
-            height: 10px;
-            background-color: #ff5757;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
+        :root {
+            --maroon: #8a2432;
+            --maroon-dark: #6f1c27;
+            --ink: #1f2937;
+            --muted: #6b7280;
+            --line: #e6e8ec;
+            --card: #ffffff;
+            --shadow: 0 10px 34px rgba(16, 24, 40, .10);
+            --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --serif: Georgia, "Times New Roman", serif;
         }
 
-        button {
-            padding: 10px 30px;
-            background-color: #e0e5ec;
-            border: none;
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--sans);
+            color: var(--ink);
+            background: linear-gradient(180deg, #f6f7f9 0%, #eceef2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 460px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            padding: 44px 40px 34px;
+            text-align: center;
+        }
+
+        .crest {
+            width: 74px;
+            height: auto;
+            margin-bottom: 14px;
+        }
+
+        .univ {
+            font-family: var(--serif);
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: .3px;
+            color: var(--maroon);
+            margin: 0;
+        }
+
+        .dept {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin: 6px 0 0;
+        }
+
+        .rule {
+            height: 1px;
+            background: var(--line);
+            margin: 22px 0;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            color: var(--maroon);
+            margin: 0 0 6px;
+        }
+
+        .lead {
+            font-size: 14.5px;
+            color: var(--muted);
+            margin: 0 0 22px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border: 1px solid var(--line);
             border-radius: 12px;
-            color: #333;
+            background: #fcfcfd;
+            text-decoration: none;
+            color: inherit;
+            text-align: left;
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+
+        .choice:hover {
+            border-color: var(--maroon);
+            box-shadow: 0 6px 18px rgba(138, 36, 50, .12);
+            transform: translateY(-1px);
+        }
+
+        .badge {
+            flex: 0 0 auto;
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            background: var(--maroon);
+            color: #fff;
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .choice-text { flex: 1; }
+
+        .choice-title {
+            display: block;
             font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 7px 7px 15px #b3b5b7, -7px -7px 15px #ffffff;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--ink);
         }
-        button:hover {
-            box-shadow: inset 7px 7px 15px #b3b5b7, inset -7px -7px 15px #ffffff;
+
+        .choice-sub {
+            display: block;
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: 2px;
         }
-        button:active {
-            box-shadow: inset 7px 7px 15px #b3b5b7, inset -7px -7px 15px #ffffff;
-            transform: scale(0.98);
+
+        .arrow {
+            flex: 0 0 auto;
+            color: var(--maroon);
+            font-size: 20px;
+            transition: transform .18s ease;
+        }
+
+        .choice:hover .arrow { transform: translateX(4px); }
+
+        .foot {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 26px 0 0;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-	<img src ="logo.png" width = "100" height="97" align="center">
-	<h1>Department of Physics</h1>
-        <h2>Choose the Degree:</h2>
-        <form id="programForm" action="page3.html" method="get">
-            <div class="radio-group">
-                <label>
-                    <input type="radio" name="program" value="BSc" checked> B.Sc
-                </label>
-                <label>
-                    <input type="radio" name="program" value="MSc"> M.Sc
-                </label>
-            </div>
-            <button type="submit">Go</button>
-        </form>
-    </div>
-
-    <script>
-        const form = document.getElementById('programForm');
-        const radioButtons = document.getElementsByName('program');
-
-        form.addEventListener('submit', function(event) {
-            let selectedValue = 'page1.html'; // default value
-
-            radioButtons.forEach(radio => {
-                if (radio.checked && radio.value === 'MSc') {
-                    selectedValue = 'page3.html';
-                }
-            });
-
-            form.action = selectedValue;
-        });
-    </script>
+    <main class="card">
+        <img class="crest" src="logo.png" alt="Jagannath University crest">
+        <h1 class="univ">Jagannath University</h1>
+        <p class="dept">Department of Physics</p>
+        <div class="rule"></div>
+        <p class="eyebrow">TESTIMONIAL GENERATOR</p>
+        <p class="lead">Select a degree program to prepare a testimonial.</p>
+        <nav class="choices">
+            <a class="choice" href="form.html?degree=bsc">
+                <span class="badge">B.Sc</span>
+                <span class="choice-text">
+                    <span class="choice-title">Bachelor of Science</span>
+                    <span class="choice-sub">Honours &middot; four-year integrated</span>
+                </span>
+                <span class="arrow">&rarr;</span>
+            </a>
+            <a class="choice" href="form.html?degree=msc">
+                <span class="badge">M.Sc</span>
+                <span class="choice-text">
+                    <span class="choice-title">Master of Science</span>
+                    <span class="choice-sub">Physics</span>
+                </span>
+                <span class="arrow">&rarr;</span>
+            </a>
+        </nav>
+        <p class="foot">Generates a print-ready PDF testimonial.</p>
+    </main>
 </body>
+
 </html>
