@@ -224,7 +224,8 @@
         const { PDFDocument, rgb, StandardFonts } = PDFLib;
         const INK = rgb(0, 0, 0);
 
-        // Placement configs. Page is 792 x 612 pt, origin bottom-left, y = text baseline.
+        // Placement configs. Templates are A4 landscape: 841.92 x 595.32 pt (297 x 210 mm),
+        // origin bottom-left, y = text baseline.
         // font: 'callig' -> Lucida Calligraphy (embedded), 'data' -> Times-Italic (built in).
         // Dotted-line values sit a few pt above the dots (small gap); Sl No sits a bit lower.
         const CONFIGS = {
@@ -232,36 +233,36 @@
                 title: 'B.Sc Testimonial',
                 template: () => window.BSC_TEMPLATE_PDF_B64,
                 fields: [
-                    { id: 'input1',  font: 'callig', size: 20, align: 'center', cx: 478,   y: 395 }, // Name
-                    { id: 'input2',  font: 'callig', size: 20, align: 'center', cx: 471,   y: 369 }, // Father
-                    { id: 'input3',  font: 'callig', size: 20, align: 'center', cx: 427,   y: 344 }, // Mother
-                    { id: 'input4',  font: 'data',   size: 14, align: 'center', cx: 392.6, y: 317 }, // Student ID
-                    { id: 'input5',  font: 'data',   size: 14, align: 'center', cx: 655,   y: 317 }, // Reg No
-                    { id: 'input6',  font: 'data',   size: 14, align: 'center', cx: 234,   y: 291 }, // Session
-                    { id: 'input7',  font: 'data',   size: 14, align: 'center', cx: 133,   y: 230 }, // Exam Year
-                    { id: 'input8',  font: 'data',   size: 14, align: 'center', cx: 318,   y: 230 }, // Held In
-                    { id: 'input9',  font: 'data',   size: 14, align: 'center', cx: 605,   y: 230 }, // CGPA
-                    { id: 'input10', font: 'data',   size: 14, align: 'center', cx: 158,   y: 209 }, // Letter Grade
-                    { id: 'input0',  font: 'data',   size: 13, align: 'left',   x: 95,     y: 445 }, // Sl No
-                    { id: 'input11', font: 'data',   size: 14, align: 'left',   x: 150,    y: 79  }, // Date
+                    { id: 'input1',  font: 'callig', size: 20, align: 'center', cx: 475.08, y: 378.32 }, // Name
+                    { id: 'input2',  font: 'callig', size: 20, align: 'center', cx: 473.22, y: 352.32 }, // Father
+                    { id: 'input3',  font: 'callig', size: 20, align: 'center', cx: 427.19, y: 327.32 }, // Mother
+                    { id: 'input4',  font: 'data',   size: 14, align: 'center', cx: 396.29, y: 300.32 }, // Student ID
+                    { id: 'input5',  font: 'data',   size: 14, align: 'center', cx: 661.64, y: 300.32 }, // Reg No
+                    { id: 'input6',  font: 'data',   size: 14, align: 'center', cx: 230.38, y: 274.32 }, // Session
+                    { id: 'input7',  font: 'data',   size: 14, align: 'center', cx: 523.16, y: 233.84 }, // Exam Year
+                    { id: 'input8',  font: 'data',   size: 14, align: 'center', cx: 707.66, y: 233.84 }, // Held In
+                    { id: 'input9',  font: 'data',   size: 14, align: 'center', cx: 286.84, y: 213.32 }, // CGPA
+                    { id: 'input10', font: 'data',   size: 14, align: 'center', cx: 489.32, y: 213.32 }, // Letter Grade
+                    { id: 'input0',  font: 'data',   size: 13, align: 'left',   x: 95,      y: 428.32 }, // Sl No
+                    { id: 'input11', font: 'data',   size: 14, align: 'left',   x: 150,     y: 82.84 }, // Date
                 ]
             },
             msc: {
                 title: 'M.Sc Testimonial',
                 template: () => window.MSC_TEMPLATE_PDF_B64,
                 fields: [
-                    { id: 'input1',  font: 'callig', size: 20, align: 'center', cx: 478,    y: 396 }, // Name
-                    { id: 'input2',  font: 'callig', size: 20, align: 'center', cx: 471,    y: 371 }, // Father
-                    { id: 'input3',  font: 'callig', size: 20, align: 'center', cx: 427,    y: 345 }, // Mother
-                    { id: 'input4',  font: 'data',   size: 14, align: 'center', cx: 388.65, y: 318 }, // Student ID
-                    { id: 'input5',  font: 'data',   size: 14, align: 'center', cx: 650.85, y: 318 }, // Reg No
-                    { id: 'input6',  font: 'data',   size: 14, align: 'center', cx: 234.55, y: 292 }, // Session
-                    { id: 'input7',  font: 'data',   size: 14, align: 'center', cx: 390.4,  y: 251 }, // Exam Year
-                    { id: 'input8',  font: 'data',   size: 14, align: 'center', cx: 566,    y: 251 }, // Held In
-                    { id: 'input9',  font: 'data',   size: 14, align: 'center', cx: 197.55, y: 231 }, // CGPA
-                    { id: 'input10', font: 'data',   size: 14, align: 'center', cx: 405,    y: 231 }, // Letter Grade
-                    { id: 'input0',  font: 'data',   size: 13, align: 'left',   x: 95,      y: 445 }, // Sl No
-                    { id: 'input11', font: 'data',   size: 14, align: 'left',   x: 150,     y: 94  }, // Date
+                    { id: 'input1',  font: 'callig', size: 20, align: 'center', cx: 475.08, y: 379.32 }, // Name
+                    { id: 'input2',  font: 'callig', size: 20, align: 'center', cx: 473.22, y: 354.32 }, // Father
+                    { id: 'input3',  font: 'callig', size: 20, align: 'center', cx: 427.19, y: 328.32 }, // Mother
+                    { id: 'input4',  font: 'data',   size: 14, align: 'center', cx: 392.33, y: 301.32 }, // Student ID
+                    { id: 'input5',  font: 'data',   size: 14, align: 'center', cx: 657.70, y: 301.32 }, // Reg No
+                    { id: 'input6',  font: 'data',   size: 14, align: 'center', cx: 230.38, y: 277.32 }, // Session
+                    { id: 'input7',  font: 'data',   size: 14, align: 'center', cx: 254.80, y: 236.32 }, // Exam Year
+                    { id: 'input8',  font: 'data',   size: 14, align: 'center', cx: 432.79, y: 236.32 }, // Held In
+                    { id: 'input9',  font: 'data',   size: 14, align: 'center', cx: 710.57, y: 236.32 }, // CGPA (shares a line with Exam Year / Held In)
+                    { id: 'input10', font: 'data',   size: 14, align: 'center', cx: 213.03, y: 214.32 }, // Letter Grade
+                    { id: 'input0',  font: 'data',   size: 13, align: 'left',   x: 95,      y: 428.32 }, // Sl No
+                    { id: 'input11', font: 'data',   size: 14, align: 'left',   x: 150,     y: 77.32 }, // Date
                 ]
             }
         };
@@ -315,7 +316,7 @@
                 }
             });
 
-            return pdfDoc.save(); // Uint8Array, vector PDF
+            return pdfDoc.save(); // Uint8Array, vector PDF at true A4 landscape
         }
 
         async function generatePDF(mode) {
