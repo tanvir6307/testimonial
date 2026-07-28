@@ -49,18 +49,6 @@ Empty fields are simply left blank on the certificate.
 
 ---
 
-## Hosting on GitHub Pages
-
-The app is 100% static, so GitHub Pages works out of the box:
-
-1. Upload the files to a repository (**use a repo name without spaces**, e.g. `physics-testimonial`).
-2. **Settings → Pages → Build and deployment → Deploy from a branch** → select your branch and `/ (root)`.
-3. The site will be available at `https://<username>.github.io/<repo>/`.
-
-> After updating `assets.js`, do a hard refresh (`Ctrl` + `F5`) since browsers cache it.
-
----
-
 ## Updating templates or the font
 
 The templates and font are embedded in `assets.js`. If you change a certificate PDF or the name font, regenerate that file with Python:
